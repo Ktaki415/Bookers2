@@ -14,10 +14,10 @@
     <ul class="nav navbar-nav navbar-right">
       <% if user_signed_in? %>
         <li>
-          <%= link_to 'Home', users_index_path(current_user.id) %>
+          <%= link_to 'Home', books_path %>
         </li>
         <li>
-          <%= link_to 'Users', users_index_path %>
+          <%= link_to 'Users', user_session_path %>
         </li>
         <li>
           <%= link_to 'Books', books_path %>
@@ -28,6 +28,9 @@
       <% else %>
         <li>
           <%= link_to 'Home', root_path %>
+        </li>
+        <li>
+          <%= link_to 'About', home_about_path %>
         </li>
         <li>
           <%= link_to "Sign up", new_user_registration_path %>
