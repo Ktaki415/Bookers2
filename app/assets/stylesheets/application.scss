@@ -13,4 +13,20 @@
 
  */
 
- @import "bootstrap";
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+header {
+	color: white;
+}
+span{
+	font-size: 20px;
+	padding-top: 10px;
+}
+.navbar-inverse {
+	background-color: #222;
+	border-color: #090909;
+}
+.body {
+	margin-top: 51px;
+}

@@ -10,37 +10,58 @@
   </head>
 
   <body>
-  <div id="slidemenu">
-    <ul class="nav navbar-nav navbar-right">
-      <% if user_signed_in? %>
-        <li>
-          <%= link_to 'Home', books_path %>
-        </li>
-        <li>
-          <%= link_to 'Users', user_session_path %>
-        </li>
-        <li>
-          <%= link_to 'Books', books_path %>
-        </li>
-        <li>
-          <%= link_to "logout", destroy_user_session_path, method: :delete %>
-        </li>
-      <% else %>
-        <li>
-          <%= link_to 'Home', root_path %>
-        </li>
-        <li>
-          <%= link_to 'About', home_about_path %>
-        </li>
-        <li>
-          <%= link_to "Sign up", new_user_registration_path %>
-        </li>
-        <li>
-          <%= link_to "Log in", new_user_session_path %>
-        </li>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container">
+
+      <nav class='nav navbar-nav navbar-left float-left' >
+        <span>Bookers</span>
+      </nav>
+
+      <nav>
+        <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>
+            <li>
+              <%= link_to 'Home', user_path(current_user), {class: "glyphicon glyphicon-home"} %>
+            </li>
+            <li>
+              <%= link_to 'Users', user_session_path, {class: "glyphicon glyphicon-user"} %>
+            </li>
+            <li>
+              <%= link_to 'Books', books_path, {class: "glyphicon glyphicon-book"} %>
+            </li>
+            <li>
+              <%= link_to "logout", destroy_user_session_path, {method: :delete, class: "glyphicon glyphicon-log-out"} %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to 'Home', root_path, {class: "glyphicon glyphicon-home"} %>
+            </li>
+            <li>
+              <%= link_to 'About', home_about_path, {class: "glyphicon glyphicon-link"} %>
+            </li>
+            <li>
+              <%= link_to "Sign up", new_user_registration_path, {class: "glyphicon glyphicon-edit"} %>
+            </li>
+            <li>
+              <%= link_to "Log in", new_user_session_path, {class: "glyphicon glyphicon-log-in"} %>
+            </li>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="body">
+    <div class="container">
+
+      <% flash.each do |message_type, message| %>
+        <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
       <% end %>
-    </ul>
+
+      <%= yield %>
+
+    </div>
   </div>
-    <%= yield %>
+
   </body>
 </html>
