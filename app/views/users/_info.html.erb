@@ -1,26 +1,31 @@
-<div class='col-md-3'>
+<div class="container">
+	<div class="row">
 
-	<h1>User Info</h1>
+		<div class='col-md-4'>
 
-	<div>
-		<%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: " pull-left profile-img", fallback: "no_image.jpg" %>
+			<h1>User Info</h1>
+
+			<div>
+				<%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: " pull-left profile-img", fallback: "no_image.jpg" %>
+			</div>
+
+			<table class="table">
+				<tbody>
+					<tr>
+						<th>name</th>
+						<th><%= user.name %></th>
+					</tr>
+					<tr>
+						<th>introduction</th>
+						<th><%= user.introduction %></th>
+					</tr>
+				</tbody>
+			</table>
+
+			<% if @user == current_user %>
+				<%= link_to "", edit_user_path(current_user.id), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_user_#{current_user.id}" %>
+			<% end %>
+
+		</div>
 	</div>
-
-	<table class="table">
-		<tbody>
-			<tr>
-				<th>name</th>
-				<th><%= user.name %></th>
-			</tr>
-			<tr>
-				<th>introduction</th>
-				<th><%= user.introduction %></th>
-			</tr>
-		</tbody>
-	</table>
-
-	<% if @user == current_user %>
-		<%= link_to "icon", edit_user_path(current_user.id) %>
-	<% end %>
-
 </div>

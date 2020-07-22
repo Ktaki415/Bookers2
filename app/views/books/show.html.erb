@@ -1,14 +1,10 @@
-<% if flash[:notice] %>
-	<p><%= flash[:notice]  %></p>
-<% end %>
-
 <div class="container">
 	<div class="row">
 		<div class="col-md-4">
 
 			<%= render 'users/info', user: current_user %>
 
-			<%= render 'books/new', book:@book %>
+			<%= render 'books/new', book: @books %>
 
 		</div>
 
@@ -30,12 +26,14 @@
 					<th><%= @book.title %></th>
 					<th><%= @book.body %></th>
 
+					<div class="">
+
 					<% if @book.user == current_user %>
 					<td>
-						<%= link_to "Edit", edit_book_path(@book) %>
+						<%= link_to "Edit", edit_book_path(@book), class: "btn btn-success" %>
 					</td>
 					<td>
-						<%= link_to "Destroy", book_path(@book.id), method: :delete, data: {confirm: "本当に消しますか?"} %>
+						<%= link_to "Destroy", book_path(@book.id), method: :delete, data: {confirm: "本当に消しますか?"}, class: "btn btn-danger" %>
 					</td>
 					<% end %>
 				</tr>
